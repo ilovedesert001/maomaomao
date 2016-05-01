@@ -1,0 +1,1 @@
+{"groups":[{"keys":"egretIcon,nextLevel_png,reset_png","name":"preload"}],"resources":[{"name":"egretIcon","type":"image","url":"assets/egret_icon.png"},{"name":"description","type":"json","url":"config/description.json"},{"name":"nextLevel_png","type":"image","url":"assets/nextLevel.png"},{"name":"reset_png","type":"image","url":"assets/reset.png"}]}
