@@ -53,6 +53,14 @@ var AAATable = (function () {
         //删除多余节点
         AAATable.tryRemove(this.divTable, this.divTable.getElementsByClassName("divTableHeader")[0]);
         AAATable.tryRemove(this.divTable, this.divTable.getElementsByClassName("divTableCol")[0]);
+        //能滑动的
+        var tableScrollerDiv = document.createElement("div");
+        tableScrollerDiv.className = "TableScroller";
+        var tableScroller = document.createElement("div");
+        tableScroller.className = "ABox";
+        tableScroller.innerHTML = "BBBBB";
+        tableScrollerDiv.appendChild(tableScroller);
+        this.divTable.appendChild(tableScrollerDiv);
         var divMainAndCol = document.createElement("div");
         divMainAndCol.className = "divMainAndCol";
         this.divTable.appendChild(divMainAndCol);
@@ -82,22 +90,6 @@ var AAATable = (function () {
             divTableHeader.style.width = AAATable.getWidth(this.divTable) + "px";
             divTableHeader.style.left = this.divTable.getBoundingClientRect().left + this.divTable.borderWidth;
             divTableHeader.getElementsByTagName("table")[0].style.width = AAATable.getWidth(divTableMain.getElementsByTagName("table")[0]) + "px";
-            //同步滑动事件
-            divTableMain.addEventListener('scroll', function () {
-                divTableHeader.scrollLeft = divTableMain.scrollLeft;
-            });
-            var that = this;
-            //不需要显示时隐藏
-            document.addEventListener('scroll', function () {
-                if (that.divTable.getBoundingClientRect().top < -20 && that.divTable.getBoundingClientRect().bottom - 100 > 0) {
-                    AAATable.hide(divTableHeader, false);
-                }
-                else {
-                    AAATable.hide(divTableHeader, true);
-                }
-            });
-            //先不显示
-            AAATable.hide(divTableHeader, true);
         }
         //增加fixedCol
         if (this.fixedCol) {
@@ -120,7 +112,15 @@ var AAATable = (function () {
             divTableMain.style.marginLeft = -parseFloat(divTableCol.style.width) + "px";
             divMainAndCol.insertBefore(divTableCol, divTableMain);
         }
-        //divMainAndCol.appendChild(divTableMain);
+        divMainAndCol.appendChild(divTableMain);
+        tableScroller.style.width = divTableMain.getElementsByTagName("table")[0].getBoundingClientRect().width + "px";
+        tableScroller.style.height = divTableMain.getElementsByTagName("table")[0].getBoundingClientRect().height + "px";
+        //同步滑动事件
+        tableScrollerDiv.addEventListener('scroll', function () {
+            divTableHeader.scrollLeft = tableScrollerDiv.scrollLeft;
+            divTableMain.scrollLeft = tableScrollerDiv.scrollLeft;
+            divMainAndCol.scrollTop = tableScrollerDiv.scrollTop;
+        });
     };
     //显示隐藏
     AAATable.hide = function (el, hideFlag) {
