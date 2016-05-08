@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+
+    <link rel="stylesheet" href="pintuer.css">
+
+    <link rel="stylesheet" href="AAATable.css">
+    <!--<script data-main="dimensions" type="text/javascript" ></script>-->
+
+    <script src="./File.js"></script>
+
+    <style>
+        body{
+            margin: 10px;
+        }
+    </style>
+
+
+
+
+</head>
+<body>
+
+
+<div style="width: 100%;">
+
+    <!--表格1-->
+    <div class="AAATable" id="table1">
+    <div class="divTableMain">
+        <table>
+            <tbody>
+            <!--第一列-->
+            <tr><td >单元31</td><td>单元34</td></tr>
+            <script>
+                var lineNum =10;
+                for (var i=0;i<lineNum ; i++){
+                    document.write(" <tr><td >单元31</td><td>单元34</td></tr>");
+                }
+            </script>
+            <tr><td >单元31</td><td>单元34</td></tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<br>
+<br>
+<br>
+
+</div>
+
+
+
+<br>
+<br>
+<!--表格2-->
+<div class="AAATable" id="table2" style="width:100%;">
+
+    <div class="divTableMain">
+        <table>
+            <tbody>
+            <script>
+                var colNum = 30;
+                var lineNum = 50;
+
+                for (var i=0;i<lineNum ; i++){
+                    document.write("<tr>");
+                    for (var j=0; j<colNum ; j++){
+                        if (i==3 && j==0){
+                            document.write("<td>很长很长很长<br>很高</td>");
+                        }else if (i==5 && j==3){
+                            document.write("<td nowrap='nowrap'>很长很长很长");
+                        }
+                        else {
+                            document.write("<td>行:"+i +"列:"+j +"</td>");
+                        }
+
+                    }
+                    document.write("</tr>");
+//                    document.write("<tr><td>行:"+i+"</td><td>单元22</td><td>单元23</td><td>单元24</td></tr>");
+                }
+
+            </script>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+<br>AAA<br>AAA<br>AAA<br>AAA<br>AAA<br>AAA<br>AAA<br>AAA<br>AAA<br>AAA<br>AAA<br>AAA<br>AAA<br>AAA<br>AAA
+
+</body>
+
+
+
+<script>
+    console.log("开始");
+
+    AAATable.debug = true;
+    var at = new AAATable();
+    at.setupTable(document.getElementById("table1"));
+    at.fixedHeader = true;
+    at.width100= true;
+    at.tableStyle = "table table-bordered ";
+    at.buildTable();
+
+    var atable2 = new AAATable();
+    atable2.setupTable(document.getElementById("table2"));
+    atable2.fixedHeader = true;
+    atable2.fixedCol = true;
+    atable2.offsetW = 1;
+    atable2.tableStyle = "table table-bordered";
+    atable2.buildTable();
+
+</script>
+
+
+
+</html>
