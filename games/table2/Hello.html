@@ -12,11 +12,16 @@
     <link rel="stylesheet" href="AAATable.css">
     <!--<script data-main="dimensions" type="text/javascript" ></script>-->
 
-    <script src="./File.js"></script>
+    <script src="./AAATable.js"></script>
+
+    <script src="./jquery-2.2.3.js"></script>
+    <script src="./dragscroll.js"></script>
 
     <style>
         body{
             margin: 10px;
+
+
         }
     </style>
 
@@ -37,7 +42,7 @@
         <table>
             <tbody>
             <script>
-                var colNum = 30;
+                var colNum = 100;
                 var lineNum = 50;
 
                 for (var i=0;i<lineNum ; i++){
@@ -46,7 +51,10 @@
                         if (i==3 && j==0){
                             document.write("<td>很长很长很长<br>很高</td>");
                         }else if (i==5 && j==3){
-                            document.write("<td nowrap='nowrap'>很长很长很长");
+                            document.write("<td nowrap='nowrap' id='aa'>很长很长很长</td>");
+                        }else if(i==0 && j==3){
+
+                                document.write("<td nowrap='nowrap' id='aa'>很长很长<input type='checkbox'>很长</td>");
                         }
                         else {
                             document.write("<td>行:"+i +"列:"+j +"</td>");
@@ -108,6 +116,8 @@
     console.log("开始");
 
    AAATable.debug = true;
+    AAATable.jq = $;
+
 //    var at = new AAATable();
 //    at.setupTable(document.getElementById("table1"));
 //    at.fixedHeader = true;
@@ -115,13 +125,15 @@
 //    at.tableStyle = "table table-bordered ";
 //    at.buildTable();
 
-    var atable2 = new AAATable();
-    atable2.setupTable(document.getElementById("table2"));
-    atable2.fixedHeader = true;
-    atable2.fixedCol = true;
-    atable2.offsetW = 1;
-    atable2.tableStyle = "table table-bordered";
-    atable2.tableHeigth = 0.8;
+    var atable2 = new AAATable(document.getElementById("table2"),{
+        fixedHeader:true,
+        fixedCol:true,
+        offsetW:1,
+        tableStyle:"table table-bordered",
+        tableHeigth:0.8,
+        dragscroll:"dragscroll",
+    });
+
     atable2.buildTable();
 
 </script>

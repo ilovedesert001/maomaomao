@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 , user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+
+    <link rel="stylesheet" href="pintuer.css">
+    <link rel="stylesheet" href="AAATable.css">
+
+    <script src="./AAATable.js"></script>
+    <script src="./dragscroll.js"></script>
+
+    <style>
+        body{
+            margin: 10px;
+        }
+    </style>
+
+    <script>
+        var colNum = 30;//列
+        var lineNum = 20;//行
+
+        AAATable.debug = true;
+
+    </script>
+
+
+</head>
+<body>
+
+<h2>不使用 Jquery 版本</h2>
+<a href="AAATable.zip" style="color: blue;">下载源代码</a>
+<p>
+    1.普通的表格
+</p>
+<div style="max-width: 600px">
+    <table class="table table-bordered">
+
+        <tbody>
+        <tr><td>单元1</td><td>单元2</td><td>单元3</td><td>单元4</td><td>单元5</td></tr>
+        <tr><td>单元21</td><td>单元22</td><td>单元23</td><td>单元24</td><td>单元25</td></tr>
+        <tr><td>单元31</td><td>单元32</td><td>单元33</td><td>单元34</td><td>单元35</td></tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+
+<hr>
+
+<p>
+    2.只固定标题
+
+</p>
+<div style="max-width: 600px">
+
+    <div class="AAATable" id="table1" style="width:100%;">
+
+        <div class="divTableMain">
+            <table>
+                <tbody>
+                <script>
+
+                    for (var i=0;i<lineNum ; i++){
+                        document.write("<tr>");
+                        for (var j=0; j<colNum ; j++){
+                            if (i==3 && j==0){
+                                document.write("<td>很长很长很长<br>很高</td>");
+                            }else if (i==5 && j==3){
+                                document.write("<td nowrap='nowrap' id='aa'>很长很长很长</td>");
+                            }else if(i==0 && j==3){
+
+                                document.write("<td nowrap='nowrap' id='aa'>很长很长<input type='checkbox'>很长</td>");
+                            }
+                            else {
+                                document.write("<td>行:"+i +"列:"+j +"</td>");
+                            }
+
+                        }
+                        document.write("</tr>");
+                   }
+
+                </script>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+</div>
+<script>
+    var atable1 = new AAATable(document.getElementById("table1"),{
+        fixedHeader:true,
+        fixedCol:false,
+        offsetW:1,
+        tableStyle:"table table-bordered",
+        tableHeigth:0.8,
+        dragscroll:"dragscroll",
+    });
+
+    atable1.buildTable();
+
+
+</script>
+
+<hr>
+
+<p>
+    3.只固定第一列
+
+</p>
+<div style="max-width: 600px">
+
+    <div class="AAATable" id="table2" style="width:100%;">
+
+        <div class="divTableMain">
+            <table>
+                <tbody>
+                <script>
+                        lineNum = 4;
+                    for (var i=0;i<lineNum ; i++){
+                        document.write("<tr>");
+                        for (var j=0; j<colNum ; j++){
+                            if (i==3 && j==0){
+                                document.write("<td>很长很长很长<br>很高</td>");
+                            }else if (i==5 && j==3){
+                                document.write("<td nowrap='nowrap' id='aa'>很长很长很长</td>");
+                            }else if(i==0 && j==3){
+
+                                document.write("<td nowrap='nowrap' id='aa'>很长很长<input type='checkbox'>很长</td>");
+                            }
+                            else {
+                                document.write("<td>行:"+i +"列:"+j +"</td>");
+                            }
+
+                        }
+                        document.write("</tr>");
+                    }
+
+                </script>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+</div>
+<script>
+    var atable2 = new AAATable(document.getElementById("table2"),{
+        fixedHeader:false,
+        fixedCol:true,
+        offsetW:1,
+        tableStyle:"table table-bordered",
+        tableHeigth:AAATable.fullHeigth,
+        dragscroll:"dragscroll",
+    });
+
+    atable2.buildTable();
+
+
+</script>
+
+<hr>
+
+
+
+
+<p>
+   4.固定标题和 第一列
+
+</p>
+<div style="max-width: 600px">
+
+    <div class="AAATable" id="table3" style="width:100%;">
+
+        <div class="divTableMain">
+            <table>
+                <tbody>
+                <script>
+                    colNum = 50;
+                    lineNum = 40;
+
+                    for (var i=0;i<lineNum ; i++){
+                        document.write("<tr>");
+                        for (var j=0; j<colNum ; j++){
+                            if (i==3 && j==0){
+                                document.write("<td>很长很长很长<br>很高</td>");
+                            }else if (i==5 && j==3){
+                                document.write("<td nowrap='nowrap' id='aa'>很长很长很长</td>");
+                            }else if(i==0 && j==3){
+
+                                document.write("<td nowrap='nowrap' id='aa'>很长很长<input type='checkbox'>很长</td>");
+                            }
+                            else {
+                                document.write("<td>行:"+i +"列:"+j +"</td>");
+                            }
+
+                        }
+                        document.write("</tr>");
+                    }
+
+                </script>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+</div>
+<script>
+    var atable3 = new AAATable(document.getElementById("table3"),{
+        fixedHeader:true,
+        fixedCol:true,
+        offsetW:1,
+        tableStyle:"table table-bordered",
+        tableHeigth:0.8,
+        dragscroll:"dragscroll",
+    });
+
+    atable3.buildTable();
+
+
+</script>
+
+<hr>
+
+
+
+<p>
+    5.宽度调整
+
+</p>
+<div style="max-width: 600px">
+
+    <div class="AAATable" id="table4" style="width:50%;">
+
+        <div class="divTableMain">
+            <table>
+                <tbody>
+                <script>
+                    colNum = 2;
+                    lineNum = 40;
+
+                    for (var i=0;i<lineNum ; i++){
+                        document.write("<tr>");
+                        for (var j=0; j<colNum ; j++){
+                            if (i==3 && j==0){
+                                document.write("<td>很长很长很长<br>很高</td>");
+                            }else if (i==5 && j==3){
+                                document.write("<td nowrap='nowrap' id='aa'>很长很长很长</td>");
+                            }else if(i==0 && j==3){
+
+                                document.write("<td nowrap='nowrap' id='aa'>很长很长<input type='checkbox'>很长</td>");
+                            }
+                            else {
+                                document.write("<td>行:"+i +"列:"+j +"</td>");
+                            }
+
+                        }
+                        document.write("</tr>");
+                    }
+
+                </script>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+</div>
+<script>
+    var atable4 = new AAATable(document.getElementById("table4"),{
+        fixedHeader:true,
+        fixedCol:false,
+        offsetW:1,
+        tableStyle:"table table-bordered",
+        tableHeigth:0.8,
+        dragscroll:"dragscroll",
+    });
+
+    atable4.buildTable();
+
+
+</script>
+
+<hr>
+
+
+
+
+
+
+</div>
+
+
+
+</body>
+
+
+
+<script>
+    console.log("开始");
+
+   AAATable.debug = true;
+
+//    var at = new AAATable();
+//    at.setupTable(document.getElementById("table1"));
+//    at.fixedHeader = true;
+//    at.width100= true;
+//    at.tableStyle = "table table-bordered ";
+//    at.buildTable();
+
+//    var atable2 = new AAATable(document.getElementById("table2"),{
+//        fixedHeader:true,
+//        fixedCol:true,
+//        offsetW:1,
+//        tableStyle:"table table-bordered",
+//        tableHeigth:0.8,
+//        dragscroll:"dragscroll",
+//    });
+//
+//    atable2.buildTable();
+
+</script>
+
+
+
+</html>
