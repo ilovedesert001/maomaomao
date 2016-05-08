@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 , user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
 
     <link rel="stylesheet" href="pintuer.css">
 
@@ -106,13 +107,13 @@
 <script>
     console.log("开始");
 
-    AAATable.debug = true;
-    var at = new AAATable();
-    at.setupTable(document.getElementById("table1"));
-    at.fixedHeader = true;
-    at.width100= true;
-    at.tableStyle = "table table-bordered ";
-    at.buildTable();
+   AAATable.debug = true;
+//    var at = new AAATable();
+//    at.setupTable(document.getElementById("table1"));
+//    at.fixedHeader = true;
+//    at.width100= true;
+//    at.tableStyle = "table table-bordered ";
+//    at.buildTable();
 
     var atable2 = new AAATable();
     atable2.setupTable(document.getElementById("table2"));
@@ -120,6 +121,7 @@
     atable2.fixedCol = true;
     atable2.offsetW = 1;
     atable2.tableStyle = "table table-bordered";
+    atable2.tableHeigth = 0.8;
     atable2.buildTable();
 
 </script>

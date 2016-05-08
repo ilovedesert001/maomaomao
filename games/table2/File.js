@@ -4,15 +4,16 @@ var AAATable = (function () {
         this.fixedCol = false;
         this.width100 = false; //表格充满div区域
         this.tableStyle = "AAAA";
+        this.tableHeigth = 1; //真个表格区域的高度 1->100% 相对可使区域
         this.offsetW = 0; //完全不可能调好
-        AAATable.log("固定标题行标题列的表格v2.0");
+        AAATable.log("固定标题行标题列的表格v3.0 ,是用原生scroll");
     }
     AAATable.log = function (msg) {
         if (AAATable.debug) {
             console.log(msg);
         }
     };
-    //获取元素高宽
+    //获取元素高宽   {不完全兼容很多浏览器}
     AAATable.getHeight = function (el) {
         var styles = window.getComputedStyle(el);
         var height = el.offsetHeight;
@@ -29,24 +30,25 @@ var AAATable = (function () {
         var borderRightWidth = parseFloat(styles.borderRightWidth);
         var paddingLeft = parseFloat(styles.paddingLeft);
         var paddingRight = parseFloat(styles.paddingRight);
-        AAATable.log("width:" + width + "     " + "borderLeftWidth:" + borderLeftWidth + "     " + "paddingLeft:" + paddingLeft);
+        // AAATable.log("width:"+width+"     "+"borderLeftWidth:"+borderLeftWidth+"     "+"paddingLeft:"+paddingLeft);
         return width - borderRightWidth - borderLeftWidth - paddingLeft - paddingRight;
     };
-    //有则删除
+    //试图移除节点
     AAATable.tryRemove = function (parentE, childE) {
         try {
             parentE.removeChild(childE);
         }
         catch (err) {
-            AAATable.log(err);
+            AAATable.log("删除节点出错,不用处理");
         }
     };
     //配置表格
     AAATable.prototype.setupTable = function (divTable) {
         AAATable.log("固定标题:" + this.fixedHeader);
         AAATable.log("固定第一列:" + this.fixedCol);
+        AAATable.log("样式:" + this.tableStyle);
+        AAATable.log("高度" + this.tableHeigth);
         this.divTable = divTable;
-        AAATable.log(this.divTable);
     };
     //形成表格
     AAATable.prototype.buildTable = function () {
@@ -58,7 +60,7 @@ var AAATable = (function () {
         tableScrollerDiv.className = "TableScroller";
         var tableScroller = document.createElement("div");
         tableScroller.className = "ABox";
-        tableScroller.innerHTML = "BBBBB";
+        //tableScroller.innerHTML = "BBBBB";
         tableScrollerDiv.appendChild(tableScroller);
         this.divTable.appendChild(tableScrollerDiv);
         var divMainAndCol = document.createElement("div");
@@ -106,28 +108,21 @@ var AAATable = (function () {
             divTableCol.classList.add("divTableCol");
             divTableCol.innerHTML = strTrInColumn;
             divTableCol.style.width = trs[0].firstElementChild.getBoundingClientRect().width + "px";
-            // divTableMain.style.width = AAATable.getWidth(this.divTable) -parseFloat(divTableCol.style.width) - 1+"px";
-            //divTableMain.style.width = divMainAndCol.clientWidth- divTableCol.getBoundingClientRect().width+"px";
-            divTableMain.style.width = "100%";
-            divTableMain.style.marginLeft = -parseFloat(divTableCol.style.width) + "px";
+            //            divTableMain.style.width = "100%";
+            //             divTableMain.style.marginLeft = -parseFloat(divTableCol.style.width)+"px";
             divMainAndCol.insertBefore(divTableCol, divTableMain);
         }
         divMainAndCol.appendChild(divTableMain);
-        tableScroller.style.width = divTableMain.getElementsByTagName("table")[0].getBoundingClientRect().width + "px";
+        tableScroller.style.width = divTableMain.getElementsByTagName("table")[0].offsetWidth + "px"; //地下的方法ip上出错
         tableScroller.style.height = divTableMain.getElementsByTagName("table")[0].getBoundingClientRect().height + "px";
+        //TODO 需要脏检查
         //同步滑动事件
         tableScrollerDiv.addEventListener('scroll', function () {
             divTableHeader.scrollLeft = tableScrollerDiv.scrollLeft;
             divTableMain.scrollLeft = tableScrollerDiv.scrollLeft;
             divMainAndCol.scrollTop = tableScrollerDiv.scrollTop;
         });
-    };
-    //显示隐藏
-    AAATable.hide = function (el, hideFlag) {
-        if (hideFlag) {
-        }
-        else {
-        }
+        this.divTable.style.height = document.documentElement.clientHeight * this.tableHeigth + "px";
     };
     AAATable.debug = false; //调试模式
     return AAATable;
