@@ -1,0 +1,173 @@
+
+/*固定高宽的表格*/
+.AAATable{
+    position: relative;
+    padding: 0;
+    background-color: white;
+    overflow: hidden;
+    border: 1px solid black;
+
+    /*-webkit-box-sizing: content-box !important;*/
+    /*-moz-box-sizing: content-box !important;*/
+    /*box-sizing: content-box !important;*/
+
+    width:  100%;
+    height:  300px;
+
+
+}
+
+.AAATable .divTableCol{
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    background-color: #e4ffa7;
+    display: inline-block;
+    width: 50px;
+    float: left;
+
+}
+
+.AAATable .divTableMain{
+    position:  absolute;
+    display: inline-block;
+    z-index: 1;
+    width: 100%;
+    background-color: #00aa00;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+
+}
+
+.AAATable .divMainAndCol{
+    position: relative;
+    background-color: #ffffff;
+}
+
+
+
+
+
+.AAATable .divTableHeader{
+    position: relative;
+    /*top: 0;*/
+    /*left:1px;*/
+    display: block;
+    overflow: hidden;
+    z-index: 20;
+    background-color: #007aff;
+
+
+
+}
+
+.rel{
+    position: relative;
+}
+
+.AAATable .divTableHeader table{
+    background-color: #007aff;
+
+}
+
+
+
+
+
+.AAATable .divTableCol td{
+    display: inline-block;
+
+}
+
+
+
+
+.AAATable .TableHeader td{
+    /*background-color: yellow;*/
+}
+
+.AAATable th, .AAATable td {
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: content-box !important;
+    box-sizing: content-box !important;
+}
+
+
+
+
+/*用外部样式*/
+
+/*.AAATable .divTableCol td{*/
+    /*display: inline-block;*/
+    /*border-bottom: 0;*/
+    /*border-right: 1px solid #ddd;*/
+/*}*/
+
+/*td , th{*/
+    /*border: 1px solid #ddd;*/
+    /*border-right: 0;*/
+    /*border-bottom: 0;*/
+/*}*/
+
+/*td:first-child{*/
+    /*border-right: 0;*/
+    /*border-bottom: 0;*/
+/*}*/
+/*td:last-child{*/
+    /*border-right: 1px solid #ddd;*/
+/*}*/
+
+/*tr:last-child td{*/
+    /*border-bottom: 1px solid #ddd;*/
+/*}*/
+
+
+
+
+/*Iscroller部分*/
+
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /*overflow: hidden;*/
+
+    /* Prevent native touch events on Windows */
+    -ms-touch-action: none;
+
+    /* Prevent the callout on tap-hold and text selection */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    /* Prevent text resize on orientation change, useful for web-apps */
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -o-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+.scroller {
+    position: absolute;
+    width: 100%;
+    /* Prevent elements to be highlighted on tap */
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+    /* Put the scroller into the HW Compositing layer right from the start */
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+
+
+
+
+
