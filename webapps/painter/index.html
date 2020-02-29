@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>a simple canvas based drawing app</title>
+    <meta name="description" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="manifest" href="manifest.json">
+
+
+    <script src="./libs/jquery-1.10.1.min.js"></script>
+    <script src="./libs/simple-undo.js"></script>
+    <link rel="stylesheet" href="./libs/drawingboard/drawingboard.min.css" />
+    <script src="./libs/drawingboard/drawingboard.min.js"></script>
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .board {
+        margin: 0 auto;
+        width: 400px;
+        height: 400px;
+      }
+
+      #default-board {
+        width: 100%;
+        height: 100vh;
+        background: white;
+      }
+
+      .drawing-board-controls[data-align="left"] {
+        margin: auto;
+        padding-top: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>JavaScript is required :(</noscript>
+    <div id="container">
+      <div class="board" id="default-board"></div>
+    </div>
+
+    <script>
+      var board = new DrawingBoard.Board("default-board", {
+        controls: [
+          "Color",
+          {
+            Size: {
+              type: "dropdown"
+            }
+          },
+          { DrawingMode: { filler: false } },
+          "Navigation",
+          "Download"
+        ],
+        size: 3,
+        webStorage: "local"
+      });
+
+      // 检测浏览器是否支持SW
+      if(navigator.serviceWorker != null){
+        navigator.serviceWorker.register('sw.js')
+                .then(function(registartion){
+                  console.log(registartion.scope)
+                })
+      }
+
+    </script>
+  </body>
+</html>

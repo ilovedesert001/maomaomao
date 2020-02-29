@@ -1,0 +1,15 @@
+{
+  "name": "Painter",
+  "short_name": "Painter",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#3eaf7c",
+  "icons": [
+    {
+      "src": "./static/icon.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    }
+  ]
+}
